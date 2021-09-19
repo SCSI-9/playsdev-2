@@ -21,7 +21,7 @@ spec:
           - containerPort: 80
         readinessProbe:
             httpGet:
-              path: /var/www/html/index.html
+              path: /
               port: 80
             initialDelaySeconds: 30
             periodSeconds: 5
@@ -29,7 +29,7 @@ spec:
             failureThreshold: 10
         livenessProbe:
             httpGet:
-              path: /var/www/html/index.html
+              path: /
               port: 80
             initialDelaySeconds: 30
             periodSeconds: 5
