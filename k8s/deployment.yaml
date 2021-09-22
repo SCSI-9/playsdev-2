@@ -5,7 +5,7 @@ metadata:
   labels:
     app: webpage-application
 spec:
-  replicas: 2
+  replicas: 1 
   selector:
     matchLabels:
       app: webpage-application
@@ -19,6 +19,13 @@ spec:
         image: 001033/scsi:latest
         ports:
           - containerPort: 80
+        resources:
+          requests:
+            memory: 64Mi
+            cpu: 10m
+          limits:
+            memory: 128Mi
+            cpu: 15m
         readinessProbe:
             httpGet:
               path: /
