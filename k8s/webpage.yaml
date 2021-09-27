@@ -13,10 +13,7 @@ spec:
         metadata:
             labels:
                 app: ENC[AES256_GCM,data:BLhI9QdTJxTypxSOovWh6b0baw==,iv:Tu2lCTDO66jmckTyb0xGKj0rKMPDFkgeZEbAD1RzbCo=,tag:rvoNpZjEJtrAb5awdDBD5w==,type:str]
-     decryption:
-          provider: sops
-          secretRef:
-             name: sops-gpg
+  
         spec:
             containers:
                 - name: ENC[AES256_GCM,data:FJv19PThWO44MzjANVhMz61pqlSQ+lq/al0FbXQ=,iv:569TY7OHn6M2ETXziAAfCqZqYvVpQ+309OUtHhhA604=,tag:QRYQTjBJY3lyj6Wc/TM77A==,type:str]
