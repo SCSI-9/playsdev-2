@@ -16,7 +16,7 @@ spec:
      decryption:
           provider: sops
           secretRef:
-            name: sops-gpg
+            name: "sops-gpg"
         spec:
             containers:
                 - name: ENC[AES256_GCM,data:FJv19PThWO44MzjANVhMz61pqlSQ+lq/al0FbXQ=,iv:569TY7OHn6M2ETXziAAfCqZqYvVpQ+309OUtHhhA604=,tag:QRYQTjBJY3lyj6Wc/TM77A==,type:str]
