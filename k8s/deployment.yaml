@@ -42,4 +42,21 @@ spec:
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 10
+<<<<<<< HEAD
+=======
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: webpage-application-service
+spec:
+  #Creating a service of type load balancer. Load balancer gets created but takes time to reflect
+  type: LoadBalancer 
+  selector:
+    app: webpage-application
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+>>>>>>> dc22848b39f203d3e492a7b4c6b59049e44c6637
 
