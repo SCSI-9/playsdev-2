@@ -1,0 +1,39 @@
+pipeline {
+
+  agent any
+
+  stages {
+
+    stage('Checkout Source') {
+      steps {
+        git url:'https://github.com/SCSI-9/playsdev-2.git', branch:'main'
+      }
+    }
+    
+  
+    
+
+
+    
+    stage('Deploy App') {
+      steps {
+        script {
+        withKubeConfig(caCertificate: '', clusterName: 'demo-eks-playsdev', contextName: '', credentialsId: 'jenkins-token', namespace: 'jenkins', serverUrl: 'https://9CF2CA4A9D704CDE541DAD7562768142.gr7.eu-central-1.eks.amazonaws.com') {
+        
+        sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"'
+        sh 'chmod +x ./kubectl'
+        sh 'sudo mv ./kubectl /usr/local/bin'
+        sh '/usr/local/bin/kubectl apply -f k8s/deployment.yaml'    
+    
+            
+        }
+            
+       
+      
+        }
+      }
+    }
+
+  }
+
+}
