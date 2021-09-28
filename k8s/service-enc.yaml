@@ -1,0 +1,24 @@
+apiVersion: ENC[AES256_GCM,data:3sU=,iv:ZzORiex1UazfbDmZ3P0YCam5YDm2461sVMPMt3O8WIg=,tag:GOB6/uJN6iL90Vh0bMVVfA==,type:str]
+kind: ENC[AES256_GCM,data:RXjjab14hg==,iv:ak3YsTDqS5616zPK19DOy4WJvZGbGJRV2qUZLOWQ7FE=,tag:7gsFnnmP1KgxjZEiIGlg5Q==,type:str]
+metadata:
+    name: ENC[AES256_GCM,data:Jr0+/aEWtq2FOnQLGQ1gDCfJlMC2qAxIcsHx,iv:948RWcTm5q4SRoJ5IhxO8U1n5M3ck1UjLYGscUm2zQY=,tag:f3GN7ewNxflqHnD4H909Nw==,type:str]
+spec:
+  #Creating a service of type load balancer. Load balancer gets created but takes time to reflect
+    type: ENC[AES256_GCM,data:nCG0vSXKzdHn5pwH,iv:QYNyZW8ozUr9GgEmZyE5Ofa8/AnkX4Gmy5ug/8fpWvk=,tag:PtpmXd+X74TotJPKmkv62w==,type:str]
+    selector:
+        app: ENC[AES256_GCM,data:roRr9/5r3fzjgSQf2jTDY3gzAQ==,iv:Vn7f/oWzaKdE2IivWoeOc90b4Zl3JiQydEWQIYBHTTU=,tag:mX7rXA2N9ChQVPWX2ezj1w==,type:str]
+    ports:
+    -   protocol: ENC[AES256_GCM,data:sGku,iv:lST/4YwgPug0HzHJZwTQVwuXTFAPjUxtLUwzKu+gHYc=,tag:m99Z1uuzDWw1/7cnX34fsQ==,type:str]
+        port: ENC[AES256_GCM,data:qNQ=,iv:04qjXdL6FsDyCWZrt6rUYT5WJNVADQzpAr/D5bzP+QE=,tag:j4JynbBcbWvGJrNhg2mpzQ==,type:int]
+        targetPort: ENC[AES256_GCM,data:9/U=,iv:HR7pZLhdbWuz5khj78oZ/io844lokDQeex99YxRJXPc=,tag:RfY/LHWr0xj1/CeEQsHLrw==,type:int]
+sops:
+    attention: This section contains key material that should only be modified with
+        extra care. See `sops -h`.
+    version: '1.18'
+    unencrypted_suffix: _unencrypted
+    kms:
+    -   arn: arn:aws:kms:eu-central-1:513910674915:key/6e3a9c49-375e-43c8-820f-64382e58fb29
+        enc: AQICAHh6qgUO/5jl28OgVKhXh4Rnyv3qjqrjS2THf1Bnild2wgFUx0GwYD9xLyz3nCaKNeeZAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMFZ9C/r3QW8/DIUorAgEQgDsuRts5RkrZSJXllavocRTIFjmNIcq2o3hRbht+03O4gvxjvFS2ZrcbzYzdhQp3m7oA3ff3v2zNERgobA==
+        created_at: '2021-09-28T12:26:16Z'
+    lastmodified: '2021-09-28T12:26:16Z'
+    mac: ENC[AES256_GCM,data:fLWSvZmkKFCTSdU5mCCL+5nARVZcc5hG0goije932+4QGDtdAp/j2IGecri+fQE+O7Tv+KVXHsV1UemsCcDWXflo04wU2Nk+J8LkVU5SUKfoiowVCQChj3uDTFhlKtePOV6/HKwZALM3Tfs0xvqRZs7f+skOld6dayaKUKskXD4=,iv:AEwDdOqjoxs0KgJAnKkrgcqHpaCY2Li53jpn4cRbjSc=,tag:YBgPBdgF09G1qT+XuYJmQg==,type:str]
