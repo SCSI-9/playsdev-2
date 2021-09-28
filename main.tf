@@ -211,7 +211,10 @@ resource "aws_db_instance" "playsdev-db" {
   vpc_security_group_ids = [aws_security_group.playsdev-sg.id]
   db_subnet_group_name   = aws_db_subnet_group.playsdev-db-subnet.name
 }
-#-------------------------------------------------------------------------------------------------------------------------------------
-
+#-------------AWS_KMS------------------------------------------------------------------------------------------------------------------------
+resource "aws_kms_key" "jenkins_key" {
+  description             = "KMS key 1"
+  deletion_window_in_days = 10
+}
 
 
