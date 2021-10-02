@@ -1,0 +1,77 @@
+
+def COLOR_MAP = [
+    'SUCCESS': 'good', 
+    'FAILURE': 'danger',
+]
+def getBuildUser() {
+    return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
+}
+
+pipeline {
+   environment {
+        // test variable: 0=success, 1=fail; must be string
+        doError = '0'
+        BUILD_USER = ''
+    }
+  agent any
+  
+  stages {
+
+    stage('Checkout Source') {
+      steps {
+        git url:'https://github.com/SCSI-9/playsdev-2.git', branch:'main'
+       }
+     }
+    
+    stage('Deploy App') {
+      steps {
+        script {
+        withKubeConfig(caCertificate: '', clusterName: 'demo-playsdev-eks', contextName: 'my-context', credentialsId: 'serviceaccount-token', namespace: 'jenkins', serverUrl: 'https://AF4B23C470DE06D2CDD198DDB2DC12EB.gr7.eu-central-1.eks.amazonaws.com')  {
+        
+        sh '/usr/local/bin/kubectl config set-context my-context --namespace=jenkins;/usr/local/bin/kubectl config use-context my-context'
+        sh 'sops -d k8s/deployment-enc.yaml > k8s/deployment-dec.yaml;/usr/local/bin/kubectl apply -f k8s/deployment-dec.yaml'
+        sh 'sops -d k8s/service-enc.yaml > k8s/service-dec.yaml;/usr/local/bin/kubectl apply -f k8s/service-dec.yaml'
+         }
+            
+      
+        }
+      }
+    }
+    stage('Error') {
+            // when doError is equal to 1, return an error
+            when {
+                expression { doError == '1' }
+            }
+            steps {
+                echo "Failure :("
+                error "Test failed on purpose, doError == str(1)"
+            }
+        }
+        stage('Success') {
+            // when doError is equal to 0, just print a simple message
+            when {
+                expression { doError == '0' }
+            }
+            steps {
+                echo "Success :)"
+            }
+        }
+    }
+
+    // Post-build actions
+    post {
+        always {
+            script {
+                BUILD_USER = getBuildUser()
+            }
+            echo 'I will always say hello in the console.' 
+                slackSend channel: '#demo',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} by ${BUILD_USER}\n More info at: ${env.BUILD_URL}"
+        }
+    }
+
+ }
+ 
+
+
