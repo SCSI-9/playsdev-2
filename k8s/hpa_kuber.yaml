@@ -13,7 +13,7 @@ spec:
   - type: Resource
     resource:
       name: memory
-      targetAverageUtilization: 80
+      targetAverageUtilization: 10
 
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
@@ -26,4 +26,4 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: microservice-deployment # TARGET name of the deployment the autoscaler need to be run on
-  targetCPUUtilizationPercentage: 95 # CPU maximum amount of use on the pod is set to 30%.
+  targetCPUUtilizationPercentage: 4 # CPU maximum amount of use on the pod is set to 30%.
